@@ -37,3 +37,85 @@ Criação de grupos:
 ```
 groupadd mqm
 ```
+
+```
+groupadd mqbrkrs
+```
+
+Criação de usuário (adicionando aos respectivos grupos)
+```
+useradd mqm -g mqm
+```
+
+```
+useradd aceadmin -g mqbrkrs
+```
+
+Adição dos usuários ``mqm``, ``aceadmin`` e ``root`` aos dois grupos criados
+```
+usermod -a -G mqm mqm
+```
+
+```
+usermod -a -G mqbrkrs mqm
+```
+
+```
+usermod -a -G mqm aceadmin
+```
+
+```
+usermod -a -G mqbrkrs aceadmin
+```
+
+```
+usermod -a -G mqm root
+```
+
+```
+usermod -a -G mqbrkrs root
+```
+
+Adição de novo ``UID`` para os dois usuários criados
+```
+usermod -u 1042 mqm
+```
+
+```
+usermod -u 1043 aceadmin
+```
+
+Adição de novo ``groupid`` para os dois grupos criados
+```
+groupmod -g 5015 mqm
+```
+
+```
+groupmod -g 5017 mqbrkrs
+```
+
+Verificação de UIDs dos usuários:
+```
+cat /etc/passwd | grep "mqm\|aceadmin\|root"
+```
+
+```
+id mqm
+```
+
+```
+id aceadmin
+```
+
+```
+id root
+```
+
+```
+cat /etc/group | grep "mqm\|aceadmin\|root"
+```
+![image info](./IMAGES/img.png)
+
+
+
+
